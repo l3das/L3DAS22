@@ -1,0 +1,11 @@
+jiwer==2.2.0
+librosa==0.8.0
+numpy==1.20.1
+pandas==1.2.4
+pystoi==0.3.3
+scipy==1.6.2
+soundfile==0.10.3.post1
+torch==1.7.1
+transformers==4.4.2
+tqdm==4.59.0
+kaggle==1.5.12

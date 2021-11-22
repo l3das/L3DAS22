@@ -1,0 +1,20 @@
+build:
+  python_version: "3.7"
+  gpu: False
+  python_packages:
+    - jiwer==2.2.0
+    - librosa==0.8.0
+    - numpy==1.18.1
+    - pandas==1.0.3
+    - pystoi==0.3.3
+    - scipy==1.4.1
+    - soundfile==0.10.3.post1
+    - torch==1.8.1
+    - transformers==4.4.2
+    - tqdm==4.36.1
+    - wget==3.2
+    - matplotlib==3.3.4
+  system_packages:
+    - libsndfile1
+    - ffmpeg
+predict: "baselines_demo.py:Predictor"
