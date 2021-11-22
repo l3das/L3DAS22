@@ -48,7 +48,7 @@ python preprocessing.py --task 2 --input_path DATASETS/Task2 --num_mics 1 --fram
 The two tasks of the challenge require different pre-processing.
 
 For **Task1** the function returns 2 numpy arrays contatining:
-* Input multichannel audio waveforms (3d noise+speech scenarios) - Shape: [n_data, n_channels, n_samples].
+* Input multichannel audio spectrograms (3d noise+speech scenarios) - Shape: [n_data, n_channels, n_freq_bins, n_time_steps].
 * Output monoaural audio waveforms (clean speech) - Shape [n_data, 1, n_samples].
 
 For **Task2** the function returns 2 numpy arrays contatining:
