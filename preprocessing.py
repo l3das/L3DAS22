@@ -44,8 +44,9 @@ def preprocessing_task1(args):
                                  -signal samples
     '''
     sr_task1 = 16000
+    max_file_length_task1 = 12
 
-    def pad(x, size=int(sr_task1*4.792)):
+    def pad(x, size):
         #pad all sounds to 4.792 seconds to meet the needs of Task1 baseline model MMUB
         length = x.shape[-1]
         if length > size:
@@ -103,10 +104,11 @@ def preprocessing_task1(args):
                     predictors.append(predictors_cuts[i])
                     target.append(target_cuts[i])
             else:
-                samples = pad(samples)
-                samples_target = pad(samples_target)
+                samples = pad(samples, size=int(sr_task1*args.pad_length))
+                samples_target = pad(samples_target, size=int(sr_task1*args.pad_length))
                 predictors.append(samples)
                 target.append(samples_target)
+            print ("here!!!! ", samples.shape)
             count += 1
             if args.num_data is not None and count >= args.num_data:
                 break
@@ -151,8 +153,9 @@ def preprocessing_task1(args):
     with open(os.path.join(args.output_path,'task1_target_test.pkl'), 'wb') as f:
         pickle.dump(target_test, f, protocol=4)
 
-    #if segmenting, generate also a test set matrix without segmenting, just for the evaluation
+    #generate also a test set matrix with full-length samples, just for the evaluation
     print ('processing uncut test set')
+    args.pad_length = max_file_length_task1
     predictors_test_uncut, target_test_uncut = process_folder('L3DAS22_Task1_dev', args)
     print ('Saving files')
     with open(os.path.join(args.output_path,'task1_predictors_test_uncut.pkl'), 'wb') as f:
@@ -332,6 +335,8 @@ if __name__ == '__main__':
                         help='number of segmented frames for stft data')
     parser.add_argument('--segment_overlap', type=float, default=None,
                         help='overlap factor for segmentation')
+    parser.add_argument('--pad_length', type=float, default=4.792,
+                        help='length of signal padding in seconds')
     parser.add_argument('--ov_subsets', type=str, default='["ov1", "ov2", "ov3"]',
                         help='should be a list of strings. Can contain ov1, ov2 and/or ov3')
     parser.add_argument('--no_overlaps', type=str, default='False',
