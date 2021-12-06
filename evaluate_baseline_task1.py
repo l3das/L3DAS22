@@ -189,12 +189,6 @@ def main(args):
     out_path = os.path.join(args.results_path, 'task1_metrics_dict.json')
     np.save(out_path, results)
 
-    '''
-    baseline results
-    word error rate 0.46
-    stoi 0.72
-    task 1 metric 0.62
-    '''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
