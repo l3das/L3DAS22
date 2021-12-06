@@ -123,6 +123,7 @@ def main(args):
                'recall': recall,
                'F score': F_score
                }
+               
     print ('*******************************')
     print ('RESULTS')
     print ('F score: ', F_score)
