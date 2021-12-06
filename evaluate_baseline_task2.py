@@ -152,7 +152,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_frames', type=int, default=300,
                         help='total number of time frames in the predicted seld matrices. (300 for 30-seconds sounds with 100msecs frames)')
     parser.add_argument('--spatial_threshold', type=float, default=1.,
-                        help='max cartesian distance withn consider a true positive')
+                        help='max cartesian distance for considering a true positive')
     #model parameters
     #the following parameters produce a prediction for each 100-msecs frame
     parser.add_argument('--architecture', type=str, default='seldnet_augmented',
