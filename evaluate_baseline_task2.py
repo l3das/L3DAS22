@@ -123,7 +123,6 @@ def main(args):
                'recall': recall,
                'F score': F_score
                }
-
     print ('*******************************')
     print ('RESULTS')
     print ('F score: ', F_score)
@@ -147,11 +146,11 @@ if __name__ == '__main__':
     parser.add_argument('--target_path', type=str, default='DATASETS/processed/task2_target_test.pkl')
     parser.add_argument('--sr', type=int, default=32000)
     #eval parameters
-    parser.add_argument('--max_loc_value', type=float, default=0.5,
+    parser.add_argument('--max_loc_value', type=float, default=2,
                          help='max value of target loc labels (to rescale model\'s output since the models has tanh in the output loc layer)')
     parser.add_argument('--num_frames', type=int, default=300,
                         help='total number of time frames in the predicted seld matrices. (300 for 30-seconds sounds with 100msecs frames)')
-    parser.add_argument('--spatial_threshold', type=float, default=1.,
+    parser.add_argument('--spatial_threshold', type=float, default=2,
                         help='max cartesian distance for considering a true positive')
     #model parameters
     #the following parameters produce a prediction for each 100-msecs frame
