@@ -152,14 +152,15 @@ def location_sensitive_detection(pred, true, n_frames=100, spatial_threshold=2.,
 
         num_true_items = len(t)
         num_pred_items = len(p)
-        matched = 0           #counts the matching events
+        matched = 0
         match_ids = []       #all pred ids that matched
+        match_ids_t = []     #all truth ids that matched
 
         if num_true_items == 0:         #if there are PREDICTED but not TRUE events
             FP += num_pred_items        #all predicted are false positive
         elif num_pred_items == 0:       #if there are TRUE but not PREDICTED events
             FN += num_true_items        #all predicted are false negative
-        elif num_true_items == 0 and num_pred_items == 0:  #if no true and no predicted, just do nothing
+        elif num_true_items == 0 and num_pred_items == 0:
             pass
         else:
             for i_t in range(len(t)):           #iterate all true events
@@ -172,14 +173,13 @@ def location_sensitive_detection(pred, true, n_frames=100, spatial_threshold=2.,
                     pred_coord = p[i_p][-3:]    #predicted coordinates
                     spat_error = np.linalg.norm(true_coord-pred_coord)  #cartesian distance between spatial coords
                     if true_class == pred_class and spat_error < spatial_threshold:  #if predicton is correct (same label + not exceeding spatial error threshold)
-                        match = True
-                        match_ids.append(i_p)   #append to matched ids (to cound eventual duplicates)
-                if match:
-                    matched += 1    #for each true event, match only once comparing all predicted events
+                        match_ids.append(i_p)   #append to pred matched ids
+                        match_ids_t.append(i_t) #append to truth matched ids
 
-            unique_ids = np.unique(match_ids)  #remove duplicates from matches ids list
-            duplicates = len(match_ids) - len(unique_ids)  #compute number of duplicates
-            matched = matched - duplicates
+            unique_ids = np.unique(match_ids)  #remove duplicates from matches ids lists
+            unique_ids_t = np.unique(match_ids_t)
+            matched = min(len(unique_ids), len(unique_ids_t))   #compute the number of actual matches without duplicates
+
             fn =  num_true_items - matched
             fp = num_pred_items - matched
 
