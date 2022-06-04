@@ -5,6 +5,11 @@ Moreover, we extensively commented our code for easy customization.
 
 For further information please refer to the challenge [website](https://www.l3das.com/icassp2022/index.html) and to the challenge [documentation](https://www.l3das.com/assets/file/L3DAS22_ICASSP_documentation.pdf).
 
+## Reference
+If you use this repository, please cite the following [paper](https://ieeexplore.ieee.org/document/9746872):
+
+Eric Guizzo, Christian Marinoni, Marco Pennese, Xinlei Ren, Xiguang Zheng, Chen Zhang, Bruno Masiero, Aurelio Uncini, and Danilo Comminiello, "L3DAS22 Challenge: Learning 3D Audio Sources in a Real Office Environment", in *2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)*, pp. 9186-9190, Singapore, May 23-27, 2022, doi: 10.1109/ICASSP43922.2022.9746872.
+
 ## Installation
 Our code is based on Python 3.7.
 
